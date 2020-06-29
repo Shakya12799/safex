@@ -3960,6 +3960,11 @@ body.kingster-boxed .gdlr-core-column-extend-right .gdlr-core-pbf-background-wra
 /*--- mobile landscape style ---*/
 
 @media only screen and (max-width: 767px) {
+
+	.responsiveImgHide{
+		display: none;
+	}
+
 	body.kingster-body-front .kingster-container {
 		max-width: 500px;
 		padding-left: 15px;
