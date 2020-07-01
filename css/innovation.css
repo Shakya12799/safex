@@ -66,17 +66,19 @@
 
 /* what this means section  */
 .whatthis001{
-    background-color: #fbfbfb;
+  background-color: #e0e0e0;
     padding: 38px 0px;
 }
 
 .whatthis001 h2{
     text-align: center;
+    color: #6b6b6b;
+    margin: 0px;
 }
 
 .whatthis001 p{
     text-align: center;
-    font-size: 27px;
+    font-size: 82px;
 }
 
 .joinTeam001{
@@ -111,8 +113,10 @@
 
 #spin:after {
     content:"";
-    animation: spin 2s linear infinite;
+    animation: spin 7s linear infinite;
 }
+
+
 @keyframes spin {
 0% { content:"Product"}
 50% { content: "Action"}
