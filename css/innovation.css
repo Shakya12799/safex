@@ -71,9 +71,11 @@
 }
 
 .whatthis001 h2{
-    text-align: center;
-    color: #6b6b6b;
-    margin: 0px;
+  text-align: center;
+  color: #6b6b6b;
+  margin: 0px;
+  margin-bottom: 9px;
+  font-size: 19px!important;
 }
 
 .whatthis001 p{
@@ -114,6 +116,37 @@
 #spin:after {
     content:"";
     animation: spin 7s linear infinite;
+}
+
+@keyframes slidein-left {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+@keyframes slidein-right {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+.right01 {  
+  animation: 5s slidein-right infinite;
+}
+
+.left01 {  
+  animation: 5s slidein-left infinite;
+}
+
+.infoPrduct01{
+  color: #3db166;
+  font-size: 54px;
 }
 
 
