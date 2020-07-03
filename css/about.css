@@ -104,7 +104,7 @@ section{
 
 .joinTeam001{
   background-color: #3db166;
-  padding: 24px 0px;
+  padding: 50px 0px;
   border-top: 1px solid #abaaaa;
 }
 
@@ -294,16 +294,16 @@ section{
 .floating h2{
   position: absolute;
   z-index: 1;
-  margin-left: -138px;
-  margin-top: -112px;
+  margin-left: -101px;
+  margin-top: -128px;
   color: #d6d6d6;
 }
 
 .floating2 h2{
   position: absolute;
   z-index: 1;
-  margin-top: -112px;
-  margin-left: -138px;
+  margin-left: -101px;
+  margin-top: -128px;
   color: #d6d6d6;
 }
 
