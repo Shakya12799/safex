@@ -482,7 +482,8 @@
         src="plugins/revslider/public/assets/js/extensions/revolution.extension.actions.min.js"></script>
     <script type="text/javascript"
         src="plugins/revslider/public/assets/js/extensions/revolution.extension.video.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
 
     <!-- Code For Mouse Slide Change -->
     <script>
@@ -566,30 +567,6 @@
 
         // });
     </script> -->
-
-    <script>
-        var scrollCount = 0,
-            latestScrollTop = 0,
-            doc = document.documentElement,
-            top = 0;
-
-        // Bind window scroll event
-        $(window).bind('scroll', function (e) {
-            top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-
-            if (latestScrollTop < top) {
-                // Scroll down, increment value
-                scrollCount += 1;
-            } else {
-                // Scroll up, decrement value
-                scrollCount -= 1;
-            }
-
-            // Store latest scroll position for next position calculation
-            latestScrollTop = top;
-            console.log(latestScrollTop);
-        });
-    </script>
     <!-- Code For Mouse Slide Change -->
 
 
