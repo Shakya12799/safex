@@ -142,16 +142,17 @@
                             <div class="mainSlider ResponsiveSliderMobile01">
                                 <div class="row hideShow">
                                     <div class="col-6 openButton">
-                                        <div class="SliderProductNmae01">
-                                            <a href="javascript:void()" class="openBtn">
-                                                <img src="./img/back.png" alt=""> <span>Futura Gold</span>
-                                            </a>
+                                        <div style="margin-left: 15px;">
+                                            <div class="SliderProductNmae01">
+                                                <a href="javascript:void()" class="openBtn">
+                                                    <img src="./img/back.png" alt=""> <span>Futura Gold</span>
+                                                </a>
+                                            </div>
+    
+                                            <div class="SliderProductImg01">
+                                                <img src="./img/Products/ProductDesc/product1main.png" alt="" style="width: 83%;">
+                                            </div>
                                         </div>
-
-                                        <div class="SliderProductImg01">
-                                            <img src="./img/Products/ProductDesc/product1main.png" alt="">
-                                        </div>
-
                                     </div>
                                     <div class="col-6 text-right">
                                         <button type="button" class="closeBtn">
@@ -484,7 +485,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <!-- Code For Mouse Slide Change -->
-    <!-- <script>
+    <script>
         var count = 1;
         let sections = document.getElementsByTagName('section');
         let currentSectionIndex = 0;
@@ -496,7 +497,7 @@
                     setTimeout(function () {
                         count = count - 1;
                         if (count == 0) {
-                            count = 6;
+                            count = 7;
                             console.log(count);
                             sections[currentSectionIndex].className = '';
                             currentSectionIndex--;
@@ -511,15 +512,20 @@
                 else {
                     setTimeout(function () {
                         count++;
-                        if (count == 6) {
+                        if (count == 7) {
                             count = 0;
                             console.log(count);
                             sections[currentSectionIndex].className = '';
                             currentSectionIndex++;
                             sections[currentSectionIndex].className = 'active';
                             var mustdetails = document.getElementsByClassName('active');
+                            console.log(currentSectionIndex);
                             var usedId = mustdetails[0].id;
+                            if(usedId === 'footer'){
                             navController(usedId);
+                            }else{
+                            navController(usedId);
+                            }
                         }
                     }, 1500);
                 }
@@ -527,10 +533,10 @@
 
             });
         });
-    </script> -->
+    </script>
 
 
-    <script>
+    <!-- <script>
         // $(".sliderController").mouseover(function(){
         let sections = document.getElementsByTagName('section');
         let currentSectionIndex = 0;
@@ -559,7 +565,7 @@
         // $(".sliderController").mouseout(function(){
 
         // });
-    </script>
+    </script> -->
 
     <script>
         var scrollCount = 0,
