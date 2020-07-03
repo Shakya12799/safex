@@ -113,6 +113,18 @@
 
   }
 
+  .fieldNew{
+    background: url(../img/innovation/banner.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+  }
+
 #spin:after {
     content:"";
     animation: spin 7s linear infinite;
