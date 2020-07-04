@@ -327,19 +327,19 @@
                     <div class="sliderController">
                         <ul>
                             <li onclick="navController('insecticides')" class="insecticidesNav">
-                                <div style="display: inline-flex;">
+                                <div class="controller" style="display: inline-flex;">
                                     <div style="float: left;">Herbicides</div>
                                     <div class="activeT1"></div>
                                 </div>
                             </li>
                             <li onclick="navController('controlCrop')" class="controlCropNav">
-                                <div style="display: inline-flex;">
+                                <div class="controller" style="display: inline-flex;">
                                     <div style="float: left;">Mode of action</div>
                                     <div class="activeT2"></div>
                                 </div>
                             </li>
                             <li onclick="navController('productsType')" class="productsTypeNav">
-                                <div style="display: inline-flex;">
+                                <div class="controller" style="display: inline-flex;">
                                     <div style="float: left;">Method of application</div>
                                     <div class="activeT3"></div>
                                 </div>
@@ -560,51 +560,54 @@
         t1.style.background = 'rgb(171, 208, 55)'
         t2 = document.querySelector('.activeT2')
         t3 = document.querySelector('.activeT3')
-        console.log(t1, t2, t3)
-        document.addEventListener('wheel', e => {
-            if(document.getElementsByClassName('mainSlider')&&document.getElementsByClassName('mainSlider')[0].style.width<'80%'){
-                document.getElementsByClassName('openBtn')[0].click()
-                scrollAble = false
-                setTimeout(function () {
-                    scrollAble=true
-                },200)
-                return
-            }
-            console.log(e.wheelDeltaY)
-            if (scrollAble) {
-                scrollAble = false
-                setTimeout(function () {
-                    scrollAble = true
-                    if (e.wheelDeltaY < 0) {
-                        if (t1.style.background == 'rgb(171, 208, 55)') {
-                            console.log("activet1")
-                            navController('controlCrop')
+        console.log(window.innerWidth)
+        if (window.innerWidth > 730) {
+            document.addEventListener('wheel', e => {
+                if (document.getElementsByClassName('mainSlider') && document.getElementsByClassName('mainSlider')[0].style.width < '80%') {
+                    document.getElementsByClassName('openBtn')[0].click()
+                    scrollAble = false
+                    setTimeout(function () {
+                        scrollAble = true
+                    }, 200)
+                    return
+                }
+                console.log(e.wheelDeltaY)
+                if (scrollAble) {
+                    scrollAble = false
+                    setTimeout(function () {
+                        scrollAble = true
+                        if (e.wheelDeltaY < 0) {
+                            if (t1.style.background == 'rgb(171, 208, 55)') {
+                                console.log("activet1")
+                                navController('controlCrop')
+                            }
+                            else if (t2.style.background == 'rgb(171, 208, 55)') {
+                                navController('productsType')
+                            }
+                            else if (t3.style.background == 'rgb(171, 208, 55)') {
+                                // t.click();
+                                navController('footer');
+                            }
                         }
-                        else if (t2.style.background == 'rgb(171, 208, 55)') {
-                            navController('productsType')
+                        else if (e.wheelDeltaY > 0) {
+                            if (document.getElementById('footer').style.display == 'block') {
+                                navController('productsType')
+                                return
+                            }
+                            if (t1.style.background == 'rgb(171, 208, 55)') {
+                            }
+                            else if (t2.style.background == 'rgb(171, 208, 55)') {
+                                navController('insecticides')
+                            }
+                            else if (t3.style.background == 'rgb(171, 208, 55)') {
+                                navController('controlCrop')
+                            }
                         }
-                        else if (t3.style.background == 'rgb(171, 208, 55)') {
-                            // t.click();
-                            navController('footer');
-                        }
-                    }
-                    else if (e.wheelDeltaY > 0) {
-                        if (document.getElementById('footer').style.display == 'block') {
-                            navController('productsType')
-                            return
-                        }
-                        if (t1.style.background == 'rgb(171, 208, 55)') {
-                        }
-                        else if (t2.style.background == 'rgb(171, 208, 55)') {
-                            navController('insecticides')
-                        }
-                        else if (t3.style.background == 'rgb(171, 208, 55)') {
-                            navController('controlCrop')
-                        }
-                    }
-                }, 500)
-            }
-        });
+                    }, 500)
+                }
+            });
+
+        }
     </script>
 
 
