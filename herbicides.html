@@ -680,7 +680,11 @@
                 jQuery('.openBtn').show();
                 jQuery('.SliderProductImg01').show();
                 jQuery('.sliderContent').hide();
-                navi.style.right = "-10em";
+                if(window.width >723){
+                    navi.style.right = "-10em";
+                }else{
+                    navi.style.right = "-50em";
+                }
 
             });
             jQuery('.openBtn').click(function () {
@@ -698,7 +702,15 @@
                 jQuery('.SliderProductImg01').hide();
                 jQuery('.closeBtn').show(300);
                 jQuery('.sliderContent').show(100);
-                navi.style.right = "2em";
+                if(window.width>723){
+                    navi.style.right = "2em";
+
+ 
+                }else{
+                    navi.style.right = "1em";
+
+         
+                }
                 navi.style.transition = "all 0.6s cubic-bezier(0, 0.48, 0.28, 1.26) 0s"
             });
 

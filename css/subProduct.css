@@ -264,20 +264,33 @@
         top: 31vh;
         width: 100vw;
     }
-   .gdlr-core-page-builder-body  .ProperDist01  ul {
+    .gdlr-core-page-builder-body .ProperDist01 ul {
         position: unset;
         display: block !important;
-        }
-    .controller{
+    }
+    .controller {
         display: flex;
         flex-direction: row-reverse !important;
     }
-    .controller .activeT3,.controller .activeT2,.controller .activeT1{
+    .controller .activeT3,
+    .controller .activeT2,
+    .controller .activeT1 {
         margin-left: 8px;
         margin-right: 5px;
     }
-
-
+    body {
+        overflow: scroll !important;
+    }
+    #footer {
+        display: block !important;
+        margin-top: 0px !important;
+    }
+    .sliderController {
+        text-align: right;
+        position: fixed;
+        right: -41em;
+        position: absolute !important;
+    }
 }
 .SliderProductNmae01 a {
     word-break: initial;
