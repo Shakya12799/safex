@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="./css/caStyle.css">
     <link rel="stylesheet" href="./css/product.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.0/dist/aos.css">
+        <link rel="stylesheet" href="./css/subProduct.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
 
     <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700%2C400" rel="stylesheet"
         property="stylesheet" type="text/css" media="all">
@@ -34,6 +36,8 @@
 
 <body
     class="home page-template-default page page-id-2039 gdlr-core-body woocommerce-no-js tribe-no-js kingster-body kingster-body-front kingster-full  kingster-with-sticky-navigation  kingster-blockquote-style-1 gdlr-core-link-to-lightbox">
+    <div id="app">
+
     <div class="kingster-mobile-header-wrap">
         <div class="kingster-mobile-header kingster-header-background kingster-style-slide kingster-sticky-mobile-navigation "
             id="kingster-mobile-header">
@@ -87,6 +91,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="kingster-body-outer-wrapper ">
         <div class="kingster-body-wrapper clearfix kingster-with-frame">
             <header class="kingster-header-wrap kingster-header-style-plain kingster-style-menu-right
@@ -120,6 +126,8 @@
                                     <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#"
                                             class="sf-with-ul-pre">Career</a>
                                     </li>
+                                    <li v-if="is_logged_in" class="menu-item menu-item-has-children"><a @click="logoutAdmin()">Logout</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -128,7 +136,159 @@
             </header>
             <div class="kingster-page-wrapper" id="kingster-page-wrapper">
                 <div class="gdlr-core-page-builder-body">
-                    <section class="p-2 pt-0 PRODuxUpper">
+
+                    <div class="kingster-page-wrapper" id="kingster-page-wrapper2" style="display: none;">
+                        <button style="background: none;border: none;font-size: 19pt;color: white;width: 100%; background: yellowgreen;" @click="hideProductDetails()"><i class="fa fa-chevron-left"></i> Back</button>
+
+                        <div class="gdlr-core-page-builder-body">
+                            <section data-section="4" id="header">
+                                <div class="position-relative" style="height: 600px; overflow: hidden;">
+                                    <div class="w-100 position-relative">
+                                        <div class="fullScreen-video">
+                                            <video id="videoBg subProductVideo" autoplay="ture" muted="true" loop="true">
+                                                <source src="./office-day.mp4" type="video/mp4">
+                                                Error
+                                            </video>
+                                        </div>
+                                    </div>
+
+                                    <div class="mainSlider ResponsiveSliderMobile01">
+                                        <div class="row hideShow">
+                                            <div class="col-6 openButton">
+                                                <div style="margin-left: 15px;">
+                                                    <div class="SliderProductNmae01">
+                                                        <a href="javascript:void()" class="openBtn">
+                                                            <img src="./img/back.png" alt=""> <span>{{selected_product.name}}</span>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="SliderProductImg01">
+                                                        <img :src="selected_product?.image" alt=""
+                                                            style="width: 83%;">
+                                                        <i v-if="is_logged_in" style="padding: 10pt;" class="fa fa-edit" @click="editTextValue(selected_product_path+'/image', selected_product?.image)"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <button type="button" class="closeBtn">
+                                                    <img src="./img/back.png" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div id="data-section">
+                                            <section data-section="0" id="insecticides">
+                                                <div class="sliderWrapper">
+                                                    <div class="container sliderContent">
+                                                        <h5 class="mb-4 pb-3">{{selected_product?.sections?.s1?.title}}</h5>
+                                                        <div class="row">
+                                                            <!-- overFlowData -->
+                                                            <div class="col-md-6 ProperDist01" style="color: white;">
+                                                                <span v-html="selected_product?.sections?.s1?.html_content"></span>
+                                                                
+                                                                <i v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextAreaValue(selected_product_path+'/sections/s1/html_content', selected_product?.sections?.s1?.html_content)"></i>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="borderTop1">
+                                                                    <img :src="selected_product?.sections?.s1?.image"
+                                                                        alt="">
+                                                                    <i v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextValue(selected_product_path+'/sections/s1/image', selected_product?.sections?.s1?.image)"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section data-section="1" id="controlCrop">
+                                                <div class="sliderWrapper">
+                                                    <div class="container sliderContent">
+                                                        <h5 class="mb-4 pb-3">{{selected_product?.sections?.s2?.title}}</h5>
+                                                        <div class="row">
+                                                            <!-- overFlowData -->
+                                                            <div class="col-md-6  ProperDist01" style="color: white;">
+                                                                <span v-html="selected_product?.sections?.s2?.html_content"></span>
+
+                                                                <i v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextAreaValue(selected_product_path+'/sections/s2/html_content', selected_product?.sections?.s2?.html_content)"></i>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="">
+                                                                    <div class="borderTop1">
+                                                                        <img :src="selected_product?.sections?.s2?.image"
+                                                                            alt="">
+                                                                        <i  v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextValue(selected_product_path+'/sections/s2/image', selected_product?.sections?.s2?.image)"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section data-section="2" id="productsType">
+                                                <div class="sliderWrapper">
+                                                    <div class="container sliderContent">
+                                                        <h5 class="mb-4 pb-3">{{selected_product?.sections?.s3?.title}}</h5>
+                                                        <div class="row">
+                                                            <!-- overFlowData -->
+                                                            <div class="col-md-6  ProperDist01" style="color: white;">
+                                                                <span v-html="selected_product?.sections?.s3?.html_content"></span>
+
+                                                                <i v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextAreaValue(selected_product_path+'/sections/s3/html_content', selected_product?.sections?.s3?.html_content)"></i>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="">
+                                                                    <div class="borderTop1">
+                                                                        <img :src="selected_product?.sections?.s3?.image"
+                                                                            alt="">
+                                                                        <i v-if="is_logged_in" style="padding: 10pt; color: white;" class="fa fa-edit" @click="editTextValue(selected_product_path+'/sections/s3/image', selected_product?.sections?.s3?.image)"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                            <div class="sliderController">
+                                <ul>
+                                    <li onclick="navController('insecticides')" class="insecticidesNav">
+                                        <div class="controller" style="display: inline-flex;">
+                                            <div style="float: left;">{{selected_product?.sections?.s1?.title}}</div>
+                                            <div class="activeT1"></div>
+                                        </div>
+                                    </li>
+                                    <li onclick="navController('controlCrop')" class="controlCropNav">
+                                        <div class="controller" style="display: inline-flex;">
+                                            <div style="float: left;">{{selected_product?.sections?.s2?.title}}</div>
+                                            <div class="activeT2"></div>
+                                        </div>
+                                    </li>
+                                    <li onclick="navController('productsType')" class="productsTypeNav">
+                                        <div class="controller" style="display: inline-flex;">
+                                            <div style="float: left;">{{selected_product?.sections?.s3?.title}}</div>
+                                            <div class="activeT3"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="p-2 pt-0 PRODuxUpper" v-if="!show_product_details">
                         <div class="row">
                             <div class="col-md-4 p-0">
                                 <div class="proMainFeature">
@@ -185,12 +345,15 @@
                             </div>
                         </div>
                     </section>
-                    <section class="mt-5 p-4 border-bottom align-middle" id="herbicides">
+                    <section v-if="!show_product_details" class="mt-5 p-4 border-bottom align-middle" v-for="(category, key) in categories" :key="key">
                         <div class="row">
                             <div class="col-md-4 position-relative productHeadingCenter">
-                                <h2> Herbicides </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
+                                <span style="display: flex;">
+                                    <h2>{{category.name}}</h2>
+                                    <i v-if="is_logged_in" style="padding: 10pt;" class="fa fa-plus" @click="showNewItemModal(key)"></i>
+                                </span>
+                                <p> {{category.description}} </p>
+                                <i v-if="is_logged_in" class="fa fa-edit" @click="editTextValue(key+'/description', category.description)"></i>
                                 <div class="arrow bounce">
                                     <a href="#s">
                                         <img src="./img/down-arrow_green.png" alt="">
@@ -199,778 +362,12 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1 text-center">
-                                        <a class="otherLink" href="./herbicides.html">
-                                            <img src="./img/Products/Products/FuturaGold.jpg"
-                                                class="rounded-circle productsSingalImg" alt="">
-                                            <h4 class="productName">Futura Gold</h4>
-                                            <p class="productSubName">Bispyribac Sodium</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="./roka.html">
-                                            <img src="./img/Products/Products/roka.png"
-                                                class="rounded-circle productsSingalImg" alt="">
-                                            <h4 class="productName">Roka</h4>
-                                            <p class="productSubName">Pyrazosulfuron Ethyl</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Magic 71</h4>
-                                            <p class="productSubName">Ammonium Salt of Glyphosate</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Damdar</h4>
-                                            <p class="productSubName">Glyphosate</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Clear-Off</h4>
-                                            <p class="productSubName">Glyphosate</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Blaze Super</h4>
-                                            <p class="productSubName">Pretilachlor</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Blaze</h4>
-                                            <p class="productSubName">Pretilachlor</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Super Stop</h4>
-                                            <p class="productSubName">Glyphosate</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Clear</h4>
-                                            <p class="productSubName">Paraquat Dichloride</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Topmix</h4>
-                                            <p class="productSubName">Butachlor</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="s">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Weedicides </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#t">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Mirza</h4>
-                                            <p class="productSubName">Imazethapyr</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Clodinofop</h4>
-                                            <p class="productSubName">Metribuzin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Nissan Super</h4>
-                                            <p class="productSubName">Fenoxaprop P Ethyl</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Khallas</h4>
-                                            <p class="productSubName">Chlorimuron Ethyl </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Java</h4>
-                                            <p class="productSubName">Quizalofop Ethyl</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Gripper</h4>
-                                            <p class="productSubName">Metsulfuron Methyl </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Dragon</h4>
-                                            <p class="productSubName">Metribuzin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Finish 58</h4>
-                                            <p class="productSubName">2,4-D Amine Salt</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Atrastar</h4>
-                                            <p class="productSubName">Atrazin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">2 in 1</h4>
-                                            <p class="productSubName">Sodium Aciflurofen + Clodinafop EC</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="t">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Fungicide </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#fo">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Hallabol</h4>
-                                            <p class="productSubName">Azoxystrobin + Tebuconazole SC</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Rattle</h4>
-                                            <p class="productSubName">Azoxystrobin + Difenconazole SC</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Achook</h4>
-                                            <p class="productSubName">Captan + Hexaconazole WP</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Stump</h4>
-                                            <p class="productSubName">Carbendazim + Mancozeb WP</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Runner</h4>
-                                            <p class="productSubName">Hexaconazole SC + Validamycin SC</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">TebuSulf</h4>
-                                            <p class="productSubName">Tebuconazole EC + Sulphur WG</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Fungo</h4>
-                                            <p class="productSubName">Thiophanat Methyl WP</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Copper S</h4>
-                                            <p class="productSubName">Copper Oxy Chloride WP</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Partner</h4>
-                                            <p class="productSubName">Metalaxyl + Mancozeb</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Shine</h4>
-                                            <p class="productSubName">Propiconazole</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="fo">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Insecticide </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#fi">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Nato</h4>
-                                            <p class="productSubName">Emmamectin benzoate + Thiomethoxam </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Shinestar Plus</h4>
-                                            <p class="productSubName">Thiomethoxam</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Dabang</h4>
-                                            <p class="productSubName">Lambda Cyhalothrin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Blast 44</h4>
-                                            <p class="productSubName">Profenofos + Cypermethrin </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Naag 505</h4>
-                                            <p class="productSubName">Chlorpyriphos + Cypermehtrin</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Naag</h4>
-                                            <p class="productSubName">Chlorpyriphos + Alphacypermethrin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Procline</h4>
-                                            <p class="productSubName">Emamectin Benzoate</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Frost</h4>
-                                            <p class="productSubName">Buprofenzim + Acephate</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Hammer</h4>
-                                            <p class="productSubName">Bifenthrin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Glide</h4>
-                                            <p class="productSubName">Acetamiprid</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Khanjar 5 EC</h4>
-                                            <p class="productSubName">Lambda Cyhalothrin </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Vardaan</h4>
-                                            <p class="productSubName">Cartap Hydrochloride</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Hitlist</h4>
-                                            <p class="productSubName">Thiamethoxam + Lambdacyhalothrin</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Empire</h4>
-                                            <p class="productSubName">Pyriproxyfen + Bifenthrin </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">LMG</h4>
-                                            <p class="productSubName">Diafenthiuron + Pyriproxyfen </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Troll</h4>
-                                            <p class="productSubName">Pymetrozine</p>
-                                        </a>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="fi">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> PGRs & Bio fertilisers</h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#si">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Jadoo GR</h4>
-                                            <p class="productSubName">Tricontanol</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Great Expert</h4>
-                                            <p class="productSubName">Gibberellic Acid with MMR technology</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Boost</h4>
-                                            <p class="productSubName">Paclobutrazole</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Bahubali</h4>
-                                            <p class="productSubName">Mycorrihza</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="si">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Fertilisers </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#se">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Amrit</h4>
-                                            <p class="productSubName">Zinc EDTA</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Aladdin</h4>
-                                            <p class="productSubName">Zinc + Sulphur</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Starvet 802</h4>
-                                            <p class="productSubName">Sulphur + Boron</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Amrit Ferrous EDTA</h4>
-                                            <p class="productSubName">Ferrous (Chelated)
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Tiger</h4>
-                                            <p class="productSubName">Sulphur</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="se">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Crop Diseases </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#crops">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Blast</h4>
-                                            <p class="productSubName">Fungal disease</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Blight</h4>
-                                            <p class="productSubName">Pathogenic Infection</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Powdery Mildew</h4>
-                                            <p class="productSubName">Fungal disease</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Yellow Rust</h4>
-                                            <p class="productSubName">Wheat Fungal disease</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName"> Shealth Blight</h4>
-                                            <p class="productSubName">Rice Fungal disease</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="p-4 border-bottom" id="crops">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Crops </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                                <div class="arrow bounce">
-                                    <a href="#insects">
-                                        <img src="./img/down-arrow_green.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Rice</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Wheat</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Cotton</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Sugarcane</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Potato</p>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Chilli</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Soyabean</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Mango</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Maize</p>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                            alt="">
-                                        <p>Lentil</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mt-5 p-4" id="insects">
-                        <div class="row">
-                            <div class="col-md-4 productHeadingCenter">
-                                <h2> Insects </h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, aliquam?
-                                    consectetur adipisicing elit. Ex, aliquam? </p>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Whitefly</h4>
-                                            <p class="productSubName">Aleyrodidae</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Brown Planthopper</h4>
-                                            <p class="productSubName">Nilaparvata lugens</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Aphids</h4>
-                                            <p class="productSubName">Aphidoidea</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Jassids</h4>
-                                            <p class="productSubName">Leafhopper/Cicadellidae</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Armyworm</h4>
-                                            <p class="productSubName">Caterpillar/Spodoptera frugiperda</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row text-center ManageProDuct01">
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Rice Leaf folder</h4>
-                                            <p class="productSubName">Cnaphalocrosis medinalis</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Stem borer</h4>
-                                            <p class="productSubName">Crambidae</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Pink Bollworm</h4>
-                                            <p class="productSubName">Pectinophora gossypiella</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Termites</h4>
-                                            <p class="productSubName">Isoptera</p>
-                                        </a>
-                                    </div>
-                                    <div class="col mx-1">
-                                        <a class="otherLink" href="#">
-                                            <img src="./img/Explore/fungus.jpg" class="rounded-circle productsSingalImg"
-                                                alt="">
-                                            <h4 class="productName">Desert Locust</h4>
-                                            <p class="productSubName">Schistocerca gregaria</p>
+                                    <div class="col mx-1 text-center" v-for="(product, pkey) in category.products" :key="key" style="display: flex;flex-wrap: wrap;">
+                                        <a class="otherLink" @click="showProductDetails(key+'/products/' + pkey, product)"  style="width: 100pt;">
+                                            <img :src="product.image"
+                                                class="productsSingalImg" alt="">
+                                            <h4 class="productName">{{product.name}}</h4>
+                                            <p class="productSubName">{{product.scientific_name}}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -981,8 +378,9 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="kingster-footer-wrapper ">
+        <section id="footer">
+            <footer>
+            <div class="kingster-footer-wrapper">
                 <div class="kingster-footer-container kingster-container clearfix">
                     <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
                         <div id="gdlr-core-custom-menu-widget-2"
@@ -1097,9 +495,145 @@
                 </div>
             </div>
         </footer>
-    </div>
+        </section>
     </div>
 
+
+    <!-- Modal -->
+<div class="modal fade" id="editTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <textarea class="form-control" rows="3" v-model="edit_content"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" @click="saveTextModalChanges()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="editTextAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="summernote" rows="3"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" @click="saveTextAreaModalChanges()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <input type="text" class="form-control" v-model="login.email" name="email" placeholder="Enter email">
+        <br>
+        <input type="password" class="form-control" v-model="login.password" name="password" placeholder="Enter password">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" @click="loginAdmin()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal -->
+<div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="featured_check">
+            <label class="form-check-label" for="featured_check" v-model="new_product.featured">Featured</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="published_check">
+            <label class="form-check-label" for="published_check" v-model="new_product.published">Published</label>
+        </div>
+        <label class="label">Name</label>
+        <input type="text" class="form-control" v-model="new_product.name">
+        <br>
+        <label class="label">Product Image URL</label>
+        <input type="text" class="form-control" v-model="new_product.image">
+        <br>
+        <label class="label">Scientific Name</label>
+        <input type="text" class="form-control" v-model="new_product.scientific_name">
+        <br>
+        <div style="border: 1px solid lightgray; border-radius: 5px;padding: 10px;">
+                <h5>Section One</h5>
+                <label class="label">Title</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s1.title">
+                <br>
+                <label class="label">Content</label>
+                <textarea class="form-control" rows="3" v-model="new_product.sections.s1.html_content"></textarea>
+                <br>
+                <label class="label">Image URL</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s1.image">
+        </div>
+        <br>
+        <div style="border: 1px solid lightgray; border-radius: 5px;padding: 10px;">
+                <h5>Section Two</h5>
+                <label class="label">Title</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s2.title">
+                <br>
+                <label class="label">Content</label>
+                <textarea class="form-control" rows="3" v-model="new_product.sections.s2.html_content"></textarea>
+                <br>
+                <label class="label">Image URL</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s2.image">
+        </div>
+        <br>
+        <div style="border: 1px solid lightgray; border-radius: 5px;padding: 10px;">
+                <h5>Section Three</h5>
+                <label class="label">Title</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s3.title">
+                <br>
+                <label class="label">Content</label>
+                <textarea class="form-control" rows="3" v-model="new_product.sections.s3.html_content"></textarea>
+                <br>
+                <label class="label">Image URL</label>
+                <input type="text" class="form-control" v-model="new_product.sections.s3.image">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" @click="addNewProduct()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
 
     <script type='text/javascript' src='js/jquery/jquery.js'></script>
     <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
@@ -1123,115 +657,315 @@
 
     <script>
         // vars
-        'use strict'
-        var testim = document.getElementById("testim"),
-            testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
-            testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
-            testimLeftArrow = document.getElementById("left-arrow"),
-            testimRightArrow = document.getElementById("right-arrow"),
-            testimSpeed = 4500,
-            currentSlide = 0,
-            currentActive = 0,
-            testimTimer,
-            touchStartPos,
-            touchEndPos,
-            touchPosDiff,
-            ignoreTouch = 30;
+        // 'use strict'
+        // var testim = document.getElementById("testim"),
+        //     testimLeftArrow = document.getElementById("left-arrow"),
+        //     testimRightArrow = document.getElementById("right-arrow"),
+        //     testimSpeed = 4500,
+        //     currentSlide = 0,
+        //     currentActive = 0,
+        //     testimTimer,
+        //     touchStartPos,
+        //     touchEndPos,
+        //     touchPosDiff,
+        //     ignoreTouch = 30;
 
-        window.onload = function () {
+        // // window.onload = function () {
 
-            // Testim Script
-            function playSlide(slide) {
-                for (var k = 0; k < testimDots.length; k++) {
-                    testimContent[k].classList.remove("active");
-                    testimContent[k].classList.remove("inactive");
-                    testimDots[k].classList.remove("active");
-                }
+        // //     // Testim Script
+        //     function playSlide(slide) {
+        //         for (var k = 0; k < testimDots.length; k++) {
+        //             testimContent[k].classList.remove("active");
+        //             testimContent[k].classList.remove("inactive");
+        //             testimDots[k].classList.remove("active");
+        //         }
 
-                if (slide < 0) {
-                    slide = currentSlide = testimContent.length - 1;
-                }
+        //         if (slide < 0) {
+        //             slide = currentSlide = testimContent.length - 1;
+        //         }
 
-                if (slide > testimContent.length - 1) {
-                    slide = currentSlide = 0;
-                }
+        //         if (slide > testimContent.length - 1) {
+        //             slide = currentSlide = 0;
+        //         }
 
-                if (currentActive != currentSlide) {
-                    testimContent[currentActive].classList.add("inactive");
-                }
-                testimContent[slide].classList.add("active");
-                testimDots[slide].classList.add("active");
+        //         if (currentActive != currentSlide) {
+        //             testimContent[currentActive].classList.add("inactive");
+        //         }
+        //         testimContent[slide].classList.add("active");
+        //         testimDots[slide].classList.add("active");
 
-                currentActive = currentSlide;
+        //         currentActive = currentSlide;
 
-                clearTimeout(testimTimer);
-                testimTimer = setTimeout(function () {
-                    playSlide(currentSlide += 1);
-                }, testimSpeed)
-            }
+        //         clearTimeout(testimTimer);
+        //         testimTimer = setTimeout(function () {
+        //             playSlide(currentSlide += 1);
+        //         }, testimSpeed)
+        //     }
 
-            testimLeftArrow.addEventListener("click", function () {
-                playSlide(currentSlide -= 1);
-            })
+        //     // playSlide(currentSlide);
 
-            testimRightArrow.addEventListener("click", function () {
-                playSlide(currentSlide += 1);
-            })
+        //     // keyboard shortcuts
+        //     document.addEventListener("keyup", function (e) {
+        //         switch (e.keyCode) {
+        //             case 37:
+        //                 testimLeftArrow.click();
+        //                 break;
 
-            for (var l = 0; l < testimDots.length; l++) {
-                testimDots[l].addEventListener("click", function () {
-                    playSlide(currentSlide = testimDots.indexOf(this));
-                })
-            }
+        //             case 39:
+        //                 testimRightArrow.click();
+        //                 break;
 
-            playSlide(currentSlide);
+        //             case 39:
+        //                 testimRightArrow.click();
+        //                 break;
 
-            // keyboard shortcuts
-            document.addEventListener("keyup", function (e) {
-                switch (e.keyCode) {
-                    case 37:
-                        testimLeftArrow.click();
-                        break;
+        //             default:
+        //                 break;
+        //         }
+        //     })
 
-                    case 39:
-                        testimRightArrow.click();
-                        break;
+        //     testim.addEventListener("touchstart", function (e) {
+        //         touchStartPos = e.changedTouches[0].clientX;
+        //     })
 
-                    case 39:
-                        testimRightArrow.click();
-                        break;
+        //     testim.addEventListener("touchend", function (e) {
+        //         touchEndPos = e.changedTouches[0].clientX;
 
-                    default:
-                        break;
-                }
-            })
+        //         touchPosDiff = touchStartPos - touchEndPos;
 
-            testim.addEventListener("touchstart", function (e) {
-                touchStartPos = e.changedTouches[0].clientX;
-            })
-
-            testim.addEventListener("touchend", function (e) {
-                touchEndPos = e.changedTouches[0].clientX;
-
-                touchPosDiff = touchStartPos - touchEndPos;
-
-                console.log(touchPosDiff);
-                console.log(touchStartPos);
-                console.log(touchEndPos);
+        //         console.log(touchPosDiff);
+        //         console.log(touchStartPos);
+        //         console.log(touchEndPos);
 
 
-                if (touchPosDiff > 0 + ignoreTouch) {
-                    testimLeftArrow.click();
-                } else if (touchPosDiff < 0 - ignoreTouch) {
-                    testimRightArrow.click();
-                } else {
-                    return;
-                }
+        //         if (touchPosDiff > 0 + ignoreTouch) {
+        //             testimLeftArrow.click();
+        //         } else if (touchPosDiff < 0 - ignoreTouch) {
+        //             testimRightArrow.click();
+        //         } else {
+        //             return;
+        //         }
 
-            })
-        }
+        //     })
+        // }
     </script>
     <script src="https://use.fontawesome.com/1744f3f671.js"></script>
+
+
+    <script>
+        function customizeProductDetailsView () {
+             let sections = document.getElementsByTagName('section');
+        let currentSectionIndex = 0;
+        let currentVal = 0;
+        scrollAble = true
+        t1 = document.querySelector('.activeT1')
+        t1.style.background = 'rgb(171, 208, 55)'
+        t2 = document.querySelector('.activeT2')
+        t3 = document.querySelector('.activeT3')
+        console.log(window.innerWidth)
+        if (window.innerWidth > 730) {
+            document.addEventListener('wheel', e => {
+                if (document.getElementsByClassName('mainSlider') && document.getElementsByClassName('mainSlider')[0].style.width < '80%') {
+                    document.getElementsByClassName('openBtn')[0].click()
+                    scrollAble = false
+                    setTimeout(function () {
+                        scrollAble = true
+                    }, 200)
+                    return
+                }
+                console.log(e.wheelDeltaY)
+                if (scrollAble) {
+                    scrollAble = false
+                    setTimeout(function () {
+                        scrollAble = true
+                        if (e.wheelDeltaY < 0) {
+                            if (t1.style.background == 'rgb(171, 208, 55)') {
+                                console.log("activet1")
+                                navController('controlCrop')
+                            }
+                            else if (t2.style.background == 'rgb(171, 208, 55)') {
+                                navController('productsType')
+                            }
+                            else if (t3.style.background == 'rgb(171, 208, 55)') {
+                                // t.click();
+                                navController('footer');
+                            }
+                        }
+                        else if (e.wheelDeltaY > 0) {
+                            if (document.getElementById('footer').style.display == 'block') {
+                                navController('productsType')
+                                return
+                            }
+                            if (t1.style.background == 'rgb(171, 208, 55)') {
+                            }
+                            else if (t2.style.background == 'rgb(171, 208, 55)') {
+                                navController('insecticides')
+                            }
+                            else if (t3.style.background == 'rgb(171, 208, 55)') {
+                                navController('controlCrop')
+                            }
+                        }
+                    }, 500)
+                }
+            });
+
+        }
+
+
+
+        // Another script
+            let navi = document.querySelector('.sliderController');
+            let wrapper = document.querySelector('.mainSlider');
+            let sliderDetails = document.querySelector('.sliderWrapper');
+            let openButton = document.querySelector('.openButton');
+
+            jQuery('.closeBtn').click(function () {
+                wrapper.style.width = "18%";
+                const styles = {
+                    maxWidth: '100%',
+                    width: '100%',
+                    flex: 'none',
+                };
+
+                // apply styles to the button
+                Object.assign(openButton.style, styles);
+
+                jQuery('.closeBtn').hide();
+                jQuery('.openBtn').show();
+                jQuery('.SliderProductImg01').show();
+                jQuery('.sliderContent').hide();
+                if(window.width >723){
+                    navi.style.right = "-10em";
+                }else{
+                    navi.style.right = "-50em";
+                }
+
+            });
+            jQuery('.openBtn').click(function () {
+                wrapper.style.width = "90%";
+                const styles = {
+                    maxWidth: '50',
+                    width: '50',
+                    flex: '0 0 50%',
+                };
+
+                // apply styles to the button
+                Object.assign(openButton.style, styles);
+                wrapper.style.marginRight = "0px";
+                jQuery('.openBtn').hide();
+                jQuery('.SliderProductImg01').hide();
+                jQuery('.closeBtn').show(300);
+                jQuery('.sliderContent').show(100);
+                if(window.width>723){
+                    navi.style.right = "2em";
+
+ 
+                }else{
+                    navi.style.right = "1em";
+
+         
+                }
+                navi.style.transition = "all 0.6s cubic-bezier(0, 0.48, 0.28, 1.26) 0s"
+            });
+
+            navController = (id) => {
+                let temp1 = document.querySelector('#insecticides');
+                let temp2 = document.querySelector('#controlCrop');
+                let temp3 = document.querySelector('#productsType');
+                let temp4 = document.querySelector('.insecticidesNav');
+                let temp5 = document.querySelector('.controlCropNav');
+                let temp6 = document.querySelector('.productsTypeNav');
+                let temp7 = document.querySelector('.activeT1');
+                let temp8 = document.querySelector('.activeT2');
+                let temp9 = document.querySelector('.activeT3');
+                let temp10 = document.querySelector('#footer');
+                let temp11 = document.querySelector('.sliderController');
+                let temp12 = document.querySelector('#header');
+
+                if (id === "insecticides") {
+                    console.log("Working on the First");
+                    temp1.style.display = "block";
+                    temp11.style.display = "block";
+                    temp12.style.display = "block";
+                    temp10.style.display = "none";
+
+                    temp4.style.color = "#ffffff";
+                    temp5.style.color = "#6b6b6b";
+                    temp6.style.color = "#6b6b6b";
+                    temp7.style.background = "#abd037";
+                    temp8.style.background = "#abd03700";
+                    temp9.style.background = "#abd03700";
+
+                    temp1.style.opacity = 1;
+                    temp1.style.pointerEvents = "auto";
+
+                    temp2.style.opacity = 0;
+                    temp2.style.pointerEvents = "none";
+
+                    temp3.style.opacity = 0;
+                    temp3.style.pointerEvents = "none";
+                }
+
+                if (id === "controlCrop") {
+                    console.log("Working on the Second");
+                    temp2.style.display = "block";
+                    temp11.style.display = "block";
+                    temp12.style.display = "block";
+                    temp10.style.display = "none";
+
+                    temp5.style.color = "#ffffff";
+                    temp4.style.color = "#6b6b6b";
+                    temp6.style.color = "#6b6b6b";
+                    temp7.style.background = "#abd03700";
+                    temp8.style.background = "#abd037";
+                    temp9.style.background = "#abd03700";
+
+                    temp1.style.opacity = 0;
+                    temp1.style.pointerEvents = "none";
+
+                    temp2.style.opacity = 1;
+                    temp2.style.pointerEvents = "auto";
+
+                    temp3.style.opacity = 0;
+                    temp3.style.pointerEvents = "none";
+                }
+
+                if (id === "productsType") {
+                    console.log("Working on the third");
+                    temp3.style.display = "block";
+                    temp11.style.display = "block";
+                    temp12.style.display = "block";
+                    temp10.style.display = "none";
+
+                    temp6.style.color = "#ffffff";
+                    temp5.style.color = "#6b6b6b";
+                    temp4.style.color = "#6b6b6b";
+                    temp7.style.background = "#abd03700";
+                    temp8.style.background = "#abd03700";
+                    temp9.style.background = "#abd037";
+
+                    temp1.style.opacity = 0;
+                    temp1.style.pointerEvents = "none";
+
+                    temp2.style.opacity = 0;
+                    temp2.style.pointerEvents = "none";
+
+                    temp3.style.opacity = 1;
+                    temp3.style.pointerEvents = "auto";
+                }
+
+                if (id === "footer") {
+                    console.log("Working on the footer");
+                    temp1.style.display = "none";
+                    temp2.style.display = "none";
+                    temp3.style.display = "none";
+                    temp10.style.display = "block";
+                    temp11.style.display = "none";
+                    temp12.style.display = "none";
+                }
+            }
+        }
+    </script>
 
     <!-- <script type="text/javascript">
         window.onload = function () {
@@ -1551,6 +1285,218 @@
             // }
         });
     </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="./js/init-firebase.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#summernote').summernote();
+        });
+    </script>
+
+    <script type="text/javascript">
+        var router = new VueRouter({
+            mode: 'history',
+            routes: []
+        });
+
+        var app = new Vue({
+          router,
+          el: '#app',
+          data: {
+            categories: {},
+            edit_path: null,
+            edit_content: null,
+            show_product_details: false,
+            selected_product_path: null,
+            selected_product: {},
+            login: {
+                email: null,
+                password: null
+            },
+            is_logged_in: false,
+            new_product_category_key: null,
+            new_product: {
+                "featured": false,
+                "image": null,
+                "name": null,
+                "published": false,
+                "scientific_name": null,
+                "sections": {
+                    "s1": {
+                        "html_content": null,
+                        "image": null,
+                        "title": null
+                    },
+                    "s2": {
+                        "html_content": null,
+                        "image": null,
+                        "title":"Mode of action"
+                    },
+                    "s3":{
+                        "html_content": null,
+                        "image": null,
+                        "title":"Method of application"
+                    }
+                }
+            }
+          },
+          mounted() {
+            this.adminWantsToLoginCheck();
+            this.getProductCategories();
+            this.initializeNewProduct();
+          },
+          methods: {
+            adminWantsToLoginCheck() {
+                if (this.$route.query.login == "admin") {
+                    $('#adminLoginModal').modal('show');
+                }
+            },
+            async getProductCategories() {
+                //var userId = firebase.auth().currentUser.uid;
+                this.categories = await firebase.database().ref('/product_categories')
+                                        .once('value').then(function(snapshot) {
+                                            return snapshot.val();
+                                        });
+                if (this.selected_product_path && (typeof this.selected_product.name != 'undefined')) {
+                    let comps = this.selected_product_path.split('/');
+                    let value = this.categories;
+                    for (var i = 0; i < comps.length; i++) {
+                        value = value[comps[i]];
+                    }
+                    this.selected_product = value;
+                }
+
+                this.isUserLoggedIn();
+            },
+            editTextValue(path, value) {
+                this.edit_path = path;
+                this.edit_content = value;
+                $('#editTextModal').modal('show');
+            },
+            editTextAreaValue(path, value) {
+                this.edit_path = path;
+                this.edit_content = value;
+                $('#summernote').summernote('reset');
+                $('#summernote').summernote('editor.pasteHTML', this.edit_content);
+                $('#editTextAreaModal').modal('show');
+            },
+            async saveTextAreaModalChanges() {
+                this.edit_content = $("#summernote").summernote("code");
+
+                await firebase.database().ref('product_categories').child(this.edit_path).set(this.edit_content);
+                await this.getProductCategories();
+
+                $('#editTextAreaModal').modal('hide');
+                this.edit_path = null;
+                this.edit_content = null;
+            },
+            async saveTextModalChanges() {
+                await firebase.database().ref('product_categories').child(this.edit_path).set(this.edit_content);
+                await this.getProductCategories();
+
+                $('#editTextModal').modal('hide');
+                this.edit_path = null;
+                this.edit_content = null;
+            },
+            showProductDetails(selected_product_path, product) {
+                this.selected_product_path = selected_product_path;
+                this.selected_product = product;
+                this.show_product_details = true;
+                document.getElementById('kingster-page-wrapper2').style.display = 'block';
+                customizeProductDetailsView();
+            },
+            hideProductDetails() {
+                this.show_product_details = false;
+                this.selected_product_path = null;
+                this.selected_product = {};
+                document.getElementById('kingster-page-wrapper2').style.display = 'none';
+            },
+            async loginAdmin() {
+                await firebase.auth().signInWithEmailAndPassword(this.login.email, this.login.password).catch(function(error) {
+                    alert(error.code + " - " + error.message);
+                    return;
+                });
+                this.is_logged_in = true;
+                this.login.email = null;
+                this.login.password = null;
+                $('#adminLoginModal').modal('hide');
+                window.location.href = window.location.href.split("?")[0];
+            },
+            async logoutAdmin() {
+                firebase.auth().signOut().then(function() {
+                    this.is_logged_in = false;
+                    window.location.href = window.location.href.split("?")[0];
+                }).catch(function(error) {
+                  alert(error.code + " - " + error.message)
+                });
+            },
+            isUserLoggedIn() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                   this.is_logged_in = true;
+                } else {
+                   this.is_logged_in = false;
+                }
+            },
+            showNewItemModal(category_key) {
+                this.new_product_category_key = category_key;
+                $('#newProductModal').modal('show');
+            },
+            initializeNewProduct() {
+                this.product = {
+                    "featured": false,
+                    "image": null,
+                    "name": null,
+                    "published": false,
+                    "scientific_name": null,
+                    "sections": {
+                        "s1": {
+                            "html_content": null,
+                            "image": null,
+                            "title": null
+                        },
+                        "s2": {
+                            "html_content": null,
+                            "image": null,
+                            "title":"Mode of action"
+                        },
+                        "s3":{
+                            "html_content": null,
+                            "image": null,
+                            "title":"Method of application"
+                        }
+                    }
+                };
+            },
+            async addNewProduct() {
+                let pkey = Math.random().toString(36).substring(8);
+                await firebase.database().ref('product_categories/'+this.new_product_category_key+'/products').child(pkey).set(this.new_product);
+                await this.getProductCategories();
+
+                $('#newProductModal').modal('hide');
+                this.new_product_category_key = null;
+                this.initializeNewProduct();
+            }
+          }
+        });
+    </script>
+
 </body>
 
 </html>
