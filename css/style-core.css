@@ -6274,3 +6274,7 @@ body .tribe-bar-views-inner {
 	cursor: pointer;
 	font-style: normal;
 }
+
+.letterSpacing{
+	letter-spacing: 6px;
+}

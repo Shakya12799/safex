@@ -3,7 +3,7 @@
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;
-    height: 600px;
+    height: 73vh;
     width: 100%;
     display: flex;
     vertical-align: middle;
@@ -18,13 +18,7 @@
 }
 
 .helpInfoHero001{
-    position: absolute;
-    top: 123px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    padding-top: 70px;
+    padding-top: 107px;
 }
 
 .customeTabs001 li{
@@ -54,8 +48,14 @@
 }
 
 .leftdistrubtersec001{
-    padding-top: 105px!important;
-    padding: 74px 164px;
+    /* padding: 0px 163px; */
+    top: 12px;
+    left: 160px;
+    /* width: 800px; */
+    /* min-height: 500px; */
+    height: auto;
+    /* background-color: #2185C5; */
+    position: relative;
 }
 
 .visitusDesc001{
@@ -102,7 +102,7 @@
 }
 
 .rightdistrubtersec001{
-    padding: 60px 82px;
+    /* padding: 60px 82px; */
 }
 
 
