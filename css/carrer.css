@@ -238,7 +238,7 @@ color: white;
 
 .backgroundtestimonial {
     position: absolute;
-    background: rgba(255, 255, 255, 0.3);
+    background-color: #323b40;
     width: 31%;
     height: 300px;
     margin: 0 auto;
@@ -247,6 +247,10 @@ color: white;
     left: 35%;
     z-index: -9;
     top: 20%;
+}
+
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls .owl-page:hover span {
+    border: 2px solid #ffffff!important;
 }
 
 
