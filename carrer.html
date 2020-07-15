@@ -176,8 +176,57 @@
                     <!-- Image Text Section -->
 
                     <!-- Testimonial Section  -->
-                    <section class="testi001" style="background-color: #616161; padding: 27px;">
+                    <section class="testi001" style="background-color: #888888; padding: 27px;">
+
                         <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="testimonial-slider" class="owl-carousel">
+                                        <div class="testimonial">
+                                            <div class="backgroundtestimonial"></div>
+                                            <div class="pic">
+                                                <img src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg" alt="">
+                                            </div>
+                                            <i class="icon"><img src="./img/quote.png" class="quoteImg" alt=""></i>
+                                            <p class="description">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim
+                                                diam, tempus vel ultricies viverra, luctus in elit. Aliquam tempus
+                                                blandit velit, in pharetra ex volutpat a. Cras eu augue ac nisl tempor
+                                                commodo.
+                                            </p>
+                                            <hr class="lineInsidetestimonal">
+                                            <span class="post">THE MAN</span>
+                                            <h3 class="testimonial-title">
+                                                 Web Developer
+                                            </h3>
+                                        </div>
+
+                                        <div class="testimonial">
+                                            <div class="backgroundtestimonial"></div>
+                                            <div class="pic">
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRedZ-8EmuNjXQr6jzVyhom8UV2TMzlABW8MA&usqp=CAU" alt="">
+                                            </div>
+                                            <i class="icon"><img src="./img/quote.png" class="quoteImg" alt=""></i>
+                                            <p class="description">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim
+                                                diam, tempus vel ultricies viverra, luctus in elit. Aliquam tempus
+                                                blandit velit, in pharetra ex volutpat a. Cras eu augue ac nisl tempor
+                                                commodo,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim
+                                                diam.
+                                            </p>
+                                            <hr class="lineInsidetestimonal">
+                                            <span class="post">THE MAN</span>
+                                            <h3 class="testimonial-title">
+                                                 Web Developer
+                                            </h3>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="testimonial-slider" class="owl-carousel">
@@ -228,48 +277,6 @@
                                             <span class="post">STYLIST</span>
                                             <h3 class="testimonial-title">Carry</h3>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div>
-                            <img src="https://i.imgur.com/gZ5HY0U.png" class="img-responsive quote-image">
-                        </div>
-                        <div id="carousel1" class="carousel slide testimonial-style" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-                                <li style="margin: 0px 14px;" data-target="#carousel1" data-slide-to="1"></li>
-                                <li data-target="#carousel1" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="carousel-caption testimonial-caption-style">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Vitae semper quis lectus nulla
-                                            at
-                                            volutpat diam.</p>
-                                        <p class="testimonial-authors">Person 1</p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carousel-caption testimonial-caption-style">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Vitae semper quis lectus nulla
-                                            at
-                                            volutpat diam.</p>
-                                        <p class="testimonial-authors">Person 2</p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carousel-caption testimonial-caption-style">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Vitae semper quis lectus nulla
-                                            at
-                                            volutpat diam.</p>
-                                        <p class="testimonial-authors">Person 3</p>
                                     </div>
                                 </div>
                             </div>
@@ -486,40 +493,30 @@
                 itemsDesktopSmall: [979, 1],
                 itemsTablet: [768, 1],
                 pagination: true,
+                navigation: false,
+                navigationText: ["", ""],
+                slideSpeed: 1000,
+                singleItem: true,
+                transitionStyle: "fade",
                 autoPlay: true
             });
         });
     </script>
 
-    <script src="https://use.fontawesome.com/1744f3f671.js"></script>
-
-    <!-- <script type="text/javascript">
-        window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "dark1", // "light2", "dark1", "dark2"
-                animationEnabled: true, // change to true
-                data: [{
-                    // Change type to "bar", "area", "spline", "pie",etc.
-                    type: "bar",
-                    dataPoints: [{
-                            label: "MILESTONE 1",
-                            y: 10
-                        },
-                        {
-                            label: "MILESTONE 2",
-                            y: 15
-                        },
-                        {
-                            label: "MILESTONE 3",
-                            y: 20
-                        }
-                    ]
-                }]
+    <!-- <script>
+        $(document).ready(function () {
+            $("#testimonial-slider").owlCarousel({
+                items: 1,
+                itemsDesktop: [1000, 1],
+                itemsDesktopSmall: [979, 1],
+                itemsTablet: [768, 1],
+                pagination: true,
+                autoPlay: true
             });
-            chart.render();
-        }
+        });
     </script> -->
-    <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script> -->
+
+    <script src="https://use.fontawesome.com/1744f3f671.js"></script>
 
     <script>
         AOS.init({
