@@ -102,83 +102,7 @@ font-size: 12px;
 color: white;
 }
 
-/* .testimonial{
-    text-align: center;
-    padding: 0% 21%;
-}
-.testimonial .icon{
-    font-size: 60px;
-    line-height: normal;
-    color: #1ec4f3;
-    margin-left: 48px;
-}
-.testimonial .description{
-    font-size: 16px;
-    font-style: italic;
-    color: #fff;
-    line-height: 26px;
-    margin-top: -20px;
-}
-.testimonial .pic{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 20px auto;
-}
-.testimonial .pic img{
-    width: 100%;
-    height: auto;
-}
-.testimonial .testimonial-title{
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.testimonial .post{
-    display: block;
-    font-size: 14px;
-    color: #e0e0e0;
-    margin-top: 15px;
-    margin-bottom: 9px;
-}
-.owl-theme .owl-controls .owl-pagination{
-    margin-top: 20px;
-}
-.owl-theme .owl-controls .owl-page span{
-    width: 10px;
-    height: 10px;
-    background: #99bf4b;
-    border: 2px solid transparent;
-    opacity: 1;
-}
-.owl-theme .owl-controls .owl-page.active span,
-.owl-theme .owl-controls .owl-page span:hover{
-    background: #fff;
-    border: 2px solid #99bf4b;
-}
-.backgroundtestimonial {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.3);
-    width: 31%;
-    height: 300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    left: 35%;
-    z-index: -9;
-    top: 20%;
-}
-
-.lineInsidetestimonal
-{
-    width: 200px;
-    margin: auto;
-} */
-
-.testimonial .post{
+/* .testimonial .post{
     display: block;
     font-size: 14px;
     color: #e0e0e0;
@@ -251,7 +175,7 @@ color: white;
 
 .owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls .owl-page:hover span {
     border: 2px solid #ffffff!important;
-}
+} */
 
 
 
