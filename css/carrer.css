@@ -194,12 +194,32 @@ div#fullbox-0 {
     .testimonial{
         height: 383px;
     }
+
+    div#fullbox-0 {
+        width: 26%;
+    }
 }
 
 @media only screen and (min-width: 1800px) {
     .testimonial{
         height: 431px;
     }
+
+    div#fullbox-0 {
+        width: 26%;
+    }
+    
+}
+
+@media only screen and (min-width: 2000px) {
+    .testimonial{
+        height: 461px;
+    }
+
+    div#fullbox-0 {
+        width: 24%;
+    }
+    
 }
 
 
